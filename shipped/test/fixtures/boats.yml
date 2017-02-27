@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  belongs_to: 
+  total_containers: 1
+  available_containers: 1
+  location: MyString
+
+two:
+  belongs_to: 
+  total_containers: 1
+  available_containers: 1
+  location: MyString

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  description: MyText
+  origin: MyString
+  destination: MyString
+  cost: 9.99
+  needed_containers: 1
+
+two:
+  user: two
+  name: MyString
+  description: MyText
+  origin: MyString
+  destination: MyString
+  cost: 9.99
+  needed_containers: 1
