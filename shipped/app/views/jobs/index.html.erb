@@ -1,2 +1,14 @@
-<h1>Jobs#index</h1>
-<p>Find me in app/views/jobs/index.html.erb</p>
+<h1>List of jobs</h1>
+<% @jobs.each do |job| %>
+
+  <h2>Job name: <%= job.name %></h2>
+  <h5>Last updated: <%= time_ago_in_words(job.updated_at) %> ago.</h5>
+  <h3>Origin: <%= job.origin %></h3>
+  <h3>Destination: <%= job.destination %></h3>
+  <h3>Cost: <%= number_to_currency(job.cost) %></h3>
+  <h3>Needed containers: <%= job.needed_containers %></h3>
+  <p><%= raw(job.description).truncate(150) %></p>
+  <%= link_to "Read more", job_path(job) %>
+  <hr>
+
+<% end %>
