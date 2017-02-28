@@ -1,2 +1,9 @@
 <h1>Boats#_form</h1>
 <p>Find me in app/views/boats/_form.html.erb</p>
+<%= simple_form_for @boats, url: "#", html: {multipart: true} do |f| %>
+	<%= f.input :name, wrapper_html:{		} %>
+	<%= f.location %>
+	<%= f.input :total_containers, wrapper_html:{		} %>
+	<%= f.input :available_containers, wrapper_html:{		} %>
+	<%= f.file :photo, wrapper_html:{		} %>
+<% end %>
