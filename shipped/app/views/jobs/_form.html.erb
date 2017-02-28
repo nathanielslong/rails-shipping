@@ -1,2 +1,16 @@
-<h1>Jobs#_form</h1>
-<p>Find me in app/views/jobs/_form.html.erb</p>
+<%= simple_form_for @jobs do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.select :origin, @ports %>
+    <%= f.input :destination %>
+    <%= f.input :cost %>
+    <%= f.input :needed_containers %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+

@@ -9,8 +9,12 @@ class JobsController < ApplicationController
   end
 
   def new
+    @jobs = Job.new()
+    @ports = Port.all
   end
 
-  def _form
+  def new
+    @jobs = Job.new()
   end
+
 end

@@ -213,7 +213,7 @@ port_countries = ["China",
 port_list = Hash[port_cities.zip(port_countries)]
 
 port_list.each do |key, val|
-  Port.create(city: key, country: val)
+  Port.create(location: key + ", " + val)
 end
 
 15.times do
