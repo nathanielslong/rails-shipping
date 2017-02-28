@@ -227,20 +227,35 @@ ports = Port.all
 
 users.each do |user|
   3.times do
+    random1 = rand(1..100)
+    location = Port.find(random1).city + ", " + Port.find(random1).country
+
     user.boats.create(name: Faker::Cat.name,
-                      location: Port.find(rand(101)),
+                      location: location,
                       total_containers: 10,
                       available_containers: 5)
   end
 
   3.times do
+    random2 = 0
+    random3 = 0
+
+    while random2 == random3 do
+      random2 = rand(1..100)
+      random3 = rand(1..100)
+    end
+
+    origin = Port.find(random2).city + ", " + Port.find(random2).country
+    destination = Port.find(random3).city + ", " + Port.find(random3).country
+
     user.jobs.create(name: Faker::Hipster.word,
                      description: Faker::Lorem.paragraphs,
-                     origin: Port.find(rand(1..100)),
-                     destination: Port.find(rand(1..100)),
+                     origin: origin,
+                     destination: destination,
                      cost: rand(1000..500000),
                      needed_containers: rand(1..10))
   end
+
 end
 
 10.times do
