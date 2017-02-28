@@ -6,6 +6,7 @@ class BoatsController < ApplicationController
   end
 
   def show
+    @boats = Boat.find_by(boat_params[:id])
   end
 
   def new
@@ -18,7 +19,7 @@ class BoatsController < ApplicationController
 
   def set_boat
       @boat = Boat.find(params[:id])
-    end
+  end
 
 
   def boat_params
