@@ -219,6 +219,8 @@ end
 15.times do
   User.create(first_name: Faker::Name.first_name,
               last_name: Faker::Name.last_name,
+              email: Faker::Internet.email,
+              password: 123456789,
               company: Faker::Company.name)
 end
 
@@ -228,7 +230,7 @@ ports = Port.all
 users.each do |user|
   3.times do
     random1 = rand(1..100)
-    location = Port.find(random1).city + ", " + Port.find(random1).country
+    location = Port.find(random1)
 
     user.boats.create(name: Faker::Cat.name,
                       location: location,
@@ -245,8 +247,8 @@ users.each do |user|
       random3 = rand(1..100)
     end
 
-    origin = Port.find(random2).city + ", " + Port.find(random2).country
-    destination = Port.find(random3).city + ", " + Port.find(random3).country
+    origin = Port.find(random2)
+    destination = Port.find(random3)
 
     user.jobs.create(name: Faker::Hipster.word,
                      description: Faker::Lorem.paragraphs,
