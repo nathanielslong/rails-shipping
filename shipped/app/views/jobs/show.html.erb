@@ -7,3 +7,8 @@
 <h3>Cost: <%= number_to_currency(@job.cost) %></h3>
 <h3>Needed containers: <%= @job.needed_containers %></h3>
 <p><%= @job.description %></p>
+
+<% if current_user == User.find(@job.user_id) %>
+  <%= link_to "Edit this job", edit_job_path(@job) %>
+  <%= link_to "Delete this job", job_path(@job), method: :delete %>
+<% end %>
