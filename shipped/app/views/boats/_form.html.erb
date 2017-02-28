@@ -1,9 +1,10 @@
 <h1>Boats#_form</h1>
 <p>Find me in app/views/boats/_form.html.erb</p>
-<%= simple_form_for @boats, url: boats_path do |f| %>
+<%= simple_form_for @boats, url: boat_path do |f| %>
 	<%= f.input :name, wrapper_html:{		} %>
-	<%= f.location %>
+	<%= f.input :location %>
 	<%= f.input :total_containers, wrapper_html:{		} %>
 	<%= f.input :available_containers, wrapper_html:{		} %>
 	<%= f.input :image, as: :file, wrapper_html:{		} %>
+	<%= f.button :submit %>
 <% end %>
