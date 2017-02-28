@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_job, only: [:edit, :show, :update]
+  before_action :find_job, only: [:edit, :show, :update, :destroy]
 
   def index
     @jobs = Job.all.order("id DESC")
@@ -26,6 +26,9 @@ class JobsController < ApplicationController
 
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -39,7 +42,13 @@ class JobsController < ApplicationController
     end
   end
 
-  def show
+  def destroy
+    if @job.destroy
+      flash[:notice] = "Successfully deleted job!"
+      redirect_to jobs_path
+    else
+      flash[:alert] = "Error deleting job."
+    end
   end
 
   private
