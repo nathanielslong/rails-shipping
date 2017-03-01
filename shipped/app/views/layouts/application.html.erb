@@ -6,15 +6,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    "https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" %>
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Montserrat" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" %>
     <%= javascript_include_tag "https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js" %>
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= notice %>
-    <%= alert %>
-    <%= yield %>
+    <div class="background">
+      <%= render 'layouts/header' %>
+      <%= notice %>
+      <%= alert %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
