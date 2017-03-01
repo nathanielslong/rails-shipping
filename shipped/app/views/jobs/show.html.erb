@@ -11,4 +11,6 @@
 <% if current_user == User.find(@job.user_id) %>
   <%= link_to "Edit this job", edit_job_path(@job) %>
   <%= link_to "Delete this job", job_path(@job), method: :delete %>
+<% elsif current_user %>
+  <%= link_to "Create a job", new_job_path %>
 <% end %>
