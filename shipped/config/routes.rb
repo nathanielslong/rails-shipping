@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  # get '/users/sign-up', to: "registrations#new"
 
   resources :users, :only => [:show]
 
