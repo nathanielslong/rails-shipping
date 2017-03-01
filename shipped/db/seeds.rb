@@ -230,7 +230,7 @@ ports = Port.all
 users.each do |user|
   3.times do
     random1 = rand(1..100)
-    location = Port.find(random1)
+    location = Port.find(random1).location
 
     user.boats.create(name: Faker::Cat.name,
                       location: location,
@@ -247,8 +247,8 @@ users.each do |user|
       random3 = rand(1..100)
     end
 
-    origin = Port.find(random2)
-    destination = Port.find(random3)
+    origin = Port.find(random2).location
+    destination = Port.find(random3).location
 
     user.jobs.create(name: Faker::Hipster.word,
                      description: Faker::Lorem.paragraphs,
