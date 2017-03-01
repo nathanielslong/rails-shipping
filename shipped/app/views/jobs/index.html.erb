@@ -16,7 +16,7 @@
     <% @jobs.each do |job| %>
       <tr>
         <td><%= job.name %></td>
-        <td><%= time_ago_in_words(job.updated_at) %> ago.</td>
+        <td><%= time_ago_in_words(job.updated_at) %> ago</td>
         <td><%= job.origin %></td>
         <td><%= job.destination %></td>
         <td><%= job.needed_containers %></td>
