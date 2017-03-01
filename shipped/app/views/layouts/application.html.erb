@@ -15,10 +15,6 @@
     <%= render 'layouts/header' %>
     <%= notice %>
     <%= alert %>
-    <% if current_user %>
-      <h3>Logged in</h3>
-      <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
-    <% end %>
     <%= yield %>
   </body>
 </html>
