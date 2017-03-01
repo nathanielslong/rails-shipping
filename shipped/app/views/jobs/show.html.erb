@@ -29,14 +29,7 @@
           <%= simple_form_for @route do |f| %>
 
             <div class="form-inputs">
-              <%= f.input :name, required: true %>
-              <%= f.input :description, required: true %>
-
-              <%= f.input :origin, required: true, collection: @ports %>
-              <%= f.input :destination, required: true, collection: @ports %>
-
-              <%= f.input :cost, required: true %>
-              <%= f.input :needed_containers, required: true %>
+              <%= f.input :boat, required: true, collection: @ports %>
             </div>
 
             <div class="form-actions">

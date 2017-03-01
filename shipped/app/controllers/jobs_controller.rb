@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :find_job, only: [:edit, :show, :update, :destroy]
 
   def index
-    @jobs = Job.all.order("id DESC")
+    @jobs = Job.all
   end
 
   def new
@@ -34,6 +34,8 @@ class JobsController < ApplicationController
   def show
     @user = User.find(@job.user_id)
     @route = Route.new()
+    # GET FUNCTIONAL
+    # @boats = current_user.boats.where(available_containers >= needed_containers).collect{ |boat| [boat.name, boat.id] }
   end
 
   def edit
