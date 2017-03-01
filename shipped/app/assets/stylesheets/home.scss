@@ -3,15 +3,20 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding-top: 65px;
+  padding-top: 45px;
+  font-family: 'Montserrat' !important;
+}
+
+.background {
+  background-image: url(/assets/background.jpg);
 }
 
 footer {
-  background:rgba(150,150,150,1);
+  background:rgba(150,150,150,0.5);
 }
 
 .navbar, .dropdown-menu{
-  background:rgba(150,150,150,1);
+  background:rgba(150,150,150,0.5);
   border: none;
 }
 
