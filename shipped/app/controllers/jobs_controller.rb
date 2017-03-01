@@ -28,6 +28,7 @@ class JobsController < ApplicationController
 
   def show
     @user = User.find(@job.user_id)
+    @route = Route.new()
   end
 
   def edit
@@ -35,10 +36,10 @@ class JobsController < ApplicationController
 
   def update
     if @job.update_attributes(job_params)
-      flash[:notice] = "Successfully created job!"
+      flash[:notice] = "Successfully updated job!"
       redirect_to job_path(@job)
     else
-      flash[:alert] = "Error creating new job."
+      flash[:alert] = "Error updating job."
       render :edit
     end
   end

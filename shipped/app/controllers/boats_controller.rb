@@ -6,11 +6,11 @@ class BoatsController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def show
-    
+
   end
 
   def new
@@ -22,7 +22,7 @@ class BoatsController < ApplicationController
   private
 
   def set_boat
-      @boat = Boat.find(params[:id])
+    @boat = Boat.find(params[:id])
   end
 
 
