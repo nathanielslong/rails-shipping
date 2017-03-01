@@ -13,8 +13,13 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = User.find(current_user).jobs.new
-    @job.update_attributes(job_params)
+    @job = current_user.jobs.new
+    @job.update_attributes(name: job_params[:name],
+                           description: job_params[:description],
+                           origin: Port.find(job_params[:origin]).location,
+                           destination: Port.find(job_params[:destination]).location,
+                           cost: job_params[:cost],
+                           needed_containers: job_params[:needed_containers])
 
     if @job.save
       flash[:notice] = "Successfully created job!"
@@ -32,10 +37,17 @@ class JobsController < ApplicationController
   end
 
   def edit
+    @user = User.find(@job.user_id)
+    @ports = Port.all.collect{ |port| [port.location, port.id]  }
   end
 
   def update
-    if @job.update_attributes(job_params)
+    if @job.update_attributes(name: job_params[:name],
+        description: job_params[:description],
+        origin: Port.find(job_params[:origin]).location,
+        destination: Port.find(job_params[:destination]).location,
+        cost: job_params[:cost],
+        needed_containers: job_params[:needed_containers])
       flash[:notice] = "Successfully updated job!"
       redirect_to job_path(@job)
     else

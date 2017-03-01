@@ -10,7 +10,7 @@
 <p><%= @job.description %></p>
 
 <% if current_user == User.find(@job.user_id) %>
-  <%= button_to "Edit this job", edit_job_path(@job) %>
+  <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
   <%= button_to "Delete this job", job_path(@job), method: :delete %>
 <% elsif current_user %>
   <button class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal">Assign a boat to this job</button>
