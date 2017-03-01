@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #make routing for form
+  # get 'jobs/:id/route' => 'jobs#route', as: "routes_path"
 
   get 'registrations/update'
 
