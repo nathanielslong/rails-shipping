@@ -1,29 +1,31 @@
-<h1>List of jobs</h1>
+<div class="container-fluid">
+  <h1>List of jobs</h1>
 
-<table class="display responsive no-wrap" id="jobs">
-  <thead>
-    <tr>
-      <th>Job Name</th>
-      <th>Last Updated</th>
-      <th>Origin Port</th>
-      <th>Destination Port</th>
-      <th>Needed Containers</th>
-      <th>Cost</th>
-      <th>Link to Posting</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @jobs.each do |job| %>
+  <table class="display responsive no-wrap" id="jobs" classspacing="0" width="100%">
+    <thead>
       <tr>
-        <td><%= job.name %></td>
-        <td><%= time_ago_in_words(job.updated_at) %> ago</td>
-        <td><%= job.origin %></td>
-        <td><%= job.destination %></td>
-        <td><%= job.needed_containers %></td>
-        <td><%= number_to_currency(job.cost) %></td>
-        <td><%= link_to "Read more", job_path(job) %></td>
+        <th>Job Name</th>
+        <th>Last Updated</th>
+        <th>Origin Port</th>
+        <th>Destination Port</th>
+        <th>Needed Containers</th>
+        <th>Cost</th>
+        <th>Link to Posting</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= job.name %></td>
+          <td><%= time_ago_in_words(job.updated_at) %> ago</td>
+          <td><%= job.origin %></td>
+          <td><%= job.destination %></td>
+          <td><%= job.needed_containers %></td>
+          <td><%= number_to_currency(job.cost) %></td>
+          <td><%= link_to "Read more", job_path(job) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
