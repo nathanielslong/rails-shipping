@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :jobs
 
   resources :boats
+
+  resources :routes
 end
