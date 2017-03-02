@@ -63,6 +63,7 @@ class JobsController < ApplicationController
       redirect_to jobs_path
     else
       flash[:alert] = "Error deleting job."
+      redirect_to jobs_path
     end
   end
 
