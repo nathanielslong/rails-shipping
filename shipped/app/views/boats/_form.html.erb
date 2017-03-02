@@ -1,6 +1,6 @@
 <h1>Boats#_form</h1>
 <p>Find me in app/views/boats/_form.html.erb</p>
-<%= simple_form_for @boat, url: boat_path do |f| %>
+<%= simple_form_for @boat do |f| %>
 	<%= f.input :name, wrapper_html:{		} %>
 	<%= f.input :location, collection: @ports %>
 	<%= f.input :total_containers, wrapper_html:{		} %>

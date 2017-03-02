@@ -23,9 +23,6 @@ class BoatsController < ApplicationController
   end
 
   def show
-    @ports = Port.all
-    
-    @port = @ports.find(@boat.location)
     
   end
 
