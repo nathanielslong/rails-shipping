@@ -30,7 +30,8 @@
             <%= simple_form_for @route do |f| %>
 
               <div class="form-inputs">
-                <%= f.input :boat, required: true, collection: @boats %>
+                <%= f.input :boat_id, required: true, collection: @boats %>
+                <%= f.hidden_field :job_id, value: @job.id %>
               </div>
 
               <div class="form-actions">
