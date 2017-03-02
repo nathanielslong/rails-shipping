@@ -8,6 +8,7 @@
 <h3>Cost: <%= number_to_currency(@job.cost) %></h3>
 <h3>Needed containers: <%= @job.needed_containers %></h3>
 <p class="append-to"><%= @job.description %></p>
+<div><%= current_user.boats_assigned(@job.id) %></div>
 
 <% if current_user == User.find(@job.user_id) %>
   <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
