@@ -3,6 +3,9 @@ class Boat < ApplicationRecord
 
   belongs_to :user
 
+  validates :available_containers, numericality: { only_integer: true, not_integer: "Containers must be integers." }
+  validates :total_containers, numericality: { only_integer: true, not_integer: "Containers must be integers." }
+
   validates_uniqueness_of :name
   has_attached_file :image,
     styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" },

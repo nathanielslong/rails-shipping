@@ -1,9 +1,9 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   before_action :find_job, only: [:edit, :show, :update, :destroy]
 
   def index
-    @jobs = Job.all.order("id DESC")
+    @jobs = Job.all
   end
 
   def new
@@ -13,8 +13,13 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = User.find(current_user).jobs.new
-    @job.update_attributes(job_params)
+    @job = current_user.jobs.new
+    @job.update_attributes(name: job_params[:name],
+                           description: job_params[:description],
+                           origin: Port.find(job_params[:origin]).location,
+                           destination: Port.find(job_params[:destination]).location,
+                           cost: job_params[:cost],
+                           needed_containers: job_params[:needed_containers])
 
     if @job.save
       flash[:notice] = "Successfully created job!"
@@ -28,17 +33,26 @@ class JobsController < ApplicationController
 
   def show
     @user = User.find(@job.user_id)
+    @route = Route.new()
+    @boats = current_user.available_boats(@job.needed_containers, @job.origin, @job.id)
   end
 
   def edit
+    @user = User.find(@job.user_id)
+    @ports = Port.all.collect{ |port| [port.location, port.id]  }
   end
 
   def update
-    if @job.update_attributes(job_params)
-      flash[:notice] = "Successfully created job!"
+    if @job.update_attributes(name: job_params[:name],
+        description: job_params[:description],
+        origin: Port.find(job_params[:origin]).location,
+        destination: Port.find(job_params[:destination]).location,
+        cost: job_params[:cost],
+        needed_containers: job_params[:needed_containers])
+      flash[:notice] = "Successfully updated job!"
       redirect_to job_path(@job)
     else
-      flash[:alert] = "Error creating new job."
+      flash[:alert] = "Error updating job."
       render :edit
     end
   end
