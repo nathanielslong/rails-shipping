@@ -9,7 +9,7 @@ class BoatsController < ApplicationController
     @boat.image = boat_params[:image]
     @boat.save
 
-    redirect_back fallback_location: show
+    redirect_to action: show, id: @boat.id 
   end
 
   def show
