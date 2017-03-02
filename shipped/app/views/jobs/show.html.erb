@@ -23,17 +23,23 @@
           <h4 class="modal-title" id="myModalLabel">Assign a boat</h4>
         </div>
         <div class="modal-body">
-          Your boats TO BE DONE
+          Assign a boat here
         </div>
         <div class="modal-footer">
-          <%= simple_form_for @route do |f| %>
+          <% if @boats.count > 0 %>
+            <%= simple_form_for @route do |f| %>
 
-            <div class="form-inputs">
-              <%= f.input :boat, required: true, collection: @ports %>
-            </div>
+              <div class="form-inputs">
+                <%= f.input :boat, required: true, collection: @ports %>
+              </div>
 
-            <div class="form-actions">
-              <%= f.button :submit, data: { disable_with: "Submitting..." } %>
+              <div class="form-actions">
+                <%= f.button :submit, data: { disable_with: "Submitting..." } %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="modal-body">
+              You have no boats that fit this job. Please try another.
             </div>
           <% end %>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
