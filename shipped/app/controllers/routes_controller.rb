@@ -6,11 +6,12 @@ class RoutesController < ApplicationController
 
     if @route.save
       flash[:notice] = "Successfully created route!"
-      redirect_to job_path(@job)
+      redirect_to :back
     else
       flash[:alert] = "Error creating new route."
-      redirect_to job_path(@job)
+      redirect_to :back
     end
+
   end
 
   private
