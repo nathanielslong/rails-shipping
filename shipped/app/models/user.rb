@@ -12,10 +12,10 @@ class User < ApplicationRecord
     assigned_boats = Route.where(job_id: job_id)
 
     #checks container number
-    not_enough_space = self.boats.where("available_containers <= #{needed_containers}")
+    not_enough_space = self.boats.where("available_containers < #{needed_containers}")
 
     #checks location number
-    not_located = self.boats.where("location != #{origin}")
+    not_located = self.boats.where("location != '#{origin}'")
 
     #need to test
     available_boats = (self.boats.all - Boat.find(assigned_boats.map(&:id)) - Boat.find(not_enough_space.map(&:id)) - Boat.find(not_located.map(&:id))).map{ |e| [e.name, e.id] }
