@@ -23,7 +23,7 @@ class BoatsController < ApplicationController
   end
 
   def show
-    @ports = Port.all.collect{ |port| [port.location, port.id]  }
+    @ports = Port.all
     
     @port = @ports.find(@boat.location)
     
