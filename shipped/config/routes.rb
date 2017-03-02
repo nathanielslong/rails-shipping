@@ -16,5 +16,7 @@ Rails.application.routes.draw do
 
   resources :boats
 
-  resources :routes
+  post '/routes' => 'routes#create'
+  delete '/routes' => 'routes#destroy'
+
 end
