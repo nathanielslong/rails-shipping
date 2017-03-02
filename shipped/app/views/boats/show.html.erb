@@ -1,10 +1,10 @@
 <h1>Boats#show</h1>
 <p>Find me in app/views/boats/show.html.erb</p>
 
-<p><%= @boat.name %></p>
-<p><%= @boat.location %></p>
-<p><%= @boat.total_containers %></p>
-<p><%= @boat.available_containers %></p>
+<p>Boat: <%= @boat.name %></p>
+<p>Current location: <%= @boat.location %></p>
+<p>Total containers: <%= @boat.total_containers %></p>
+<p>Available containers: <%= @boat.available_containers %></p>
 <p><%= image_tag @boat.image %></p>
 
 <%= link_to("Edit boat info", edit_boat_path)%>
