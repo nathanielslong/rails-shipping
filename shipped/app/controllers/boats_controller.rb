@@ -1,15 +1,19 @@
 class BoatsController < ApplicationController
-  before_action :set_boat, only: [:edit, :show]
+  before_action :set_boat, only: [:update, :show, :edit]
 
   def index
     @boats = Boat.all
   end
 
-  def edit
-    
+  def update
+    @boat.image = boat_params[:image]
+    @boat.save
+
+    redirect_back fallback_location: show
   end
 
   def show
+
     
   end
 
