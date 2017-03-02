@@ -1,2 +1,44 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container-fluid">
+  <h1><%= @user.full_name %></h3>
+  <h2>Company: <%= @user.company %></h4>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10">
+        <h3><%= @user.full_name %>'s jobs</h3>
+        <table class="display responsive no-wrap" id="jobs">
+          <thead>
+            <tr>
+              <th>Job Name</th>
+              <th>Last Updated</th>
+              <th>Origin Port</th>
+              <th>Destination Port</th>
+              <th>Needed Containers</th>
+              <th>Cost</th>
+              <th>Link to Posting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @jobs.each do |job| %>
+              <tr>
+                <td><%= job.name %></td>
+                <td><%= time_ago_in_words(job.updated_at) %> ago</td>
+                <td><%= job.origin %></td>
+                <td><%= job.destination %></td>
+                <td><%= job.needed_containers %></td>
+                <td><%= number_to_currency(job.cost) %></td>
+                <td><%= link_to "Read more", job_path(job) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10">
+        <h3><%= @user.full_name %>'s boats</h3>
+      </div>
+    </div>
+  </div>
+</div>

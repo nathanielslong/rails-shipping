@@ -27,6 +27,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    @user = User.find(@job.user_id)
   end
 
   def edit

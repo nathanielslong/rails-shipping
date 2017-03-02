@@ -3,12 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding-top: 65px;
+  padding-top: 45px;
+  font-family: 'Montserrat' !important;
+}
+
+.background {
+  background-image: url(/assets/background.jpg);
+}
+
+footer {
+  background:rgba(150,150,150,0.5);
 }
 
 .navbar, .dropdown-menu{
-background:rgba(150,150,150,1);
-border: none;
+  background:rgba(150,150,150,0.5);
+  border: none;
 }
 
 .nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
@@ -21,12 +30,12 @@ border: none;
 }
 
 .navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
- color: #fff;
+  color: #fff;
 }
 
 .dropdown-menu{
-      -webkit-box-shadow: none;
-    box-shadow:none;
+  -webkit-box-shadow: none;
+  box-shadow:none;
 }
 
 .nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
@@ -61,6 +70,6 @@ border: none;
 }
 
 .navbar-toggle .icon-bar{
-    color: #fff;
-    background: #fff;
+  color: #fff;
+  background: #fff;
 }
