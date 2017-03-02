@@ -8,12 +8,25 @@
 <h3>Cost: <%= number_to_currency(@job.cost) %></h3>
 <h3>Needed containers: <%= @job.needed_containers %></h3>
 <p class="append-to"><%= @job.description %></p>
-<div><%= current_user.boats_assigned(@job.id) %></div>
 
 <% if current_user == User.find(@job.user_id) %>
   <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
   <%= button_to "Delete this job", job_path(@job), method: :delete %>
 <% elsif current_user %>
+  <% if current_user.assigned_boat_count > 0%>
+    <div><%= current_user.boats_assigned(@job.id, current_user.id) %></div>
+    <%= simple_form_for @route, remote: true, method: :delete do |f| %>
+
+      <div class="form-inputs">
+        <%= f.input :boat_id, required: true, collection: @boats %>
+        <%= f.hidden_field :job_id, value: @job.id %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, data: { disable_with: "Submitting..." } %>
+      </div>
+    <% end %>
+  <% end %>
   <button class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal">Assign a boat to this job</button>
 
   <div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

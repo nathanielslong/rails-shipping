@@ -21,10 +21,16 @@ class User < ApplicationRecord
     available_boats = (self.boats.all - Boat.find(assigned_boats.map(&:boat_id)) - Boat.find(not_enough_space.map(&:id)) - Boat.find(not_located.map(&:id))).map{ |e| [e.name, e.id] }
   end
 
-  def boats_assigned(job_id)
-    boats = self.boats.all
-    if boats.count > 1
-      boats = boats.map{ |e| e.name }
+  def assigned_boat_count(job_id, user_id)
+    boats = Boat.find(Route.where(job_id: job_id).map(&:boat_id))
+    boats = boats.map{ |e| e.name }
+    boats.count
+  end
+
+  def boats_assigned(job_id, user_id)
+    boats = Boat.find(Route.where(job_id: job_id).map(&:boat_id))
+    boats = boats.map{ |e| e.name }
+    if boats.count >= 1
       message = boats.each{ |boat| boat}.to_sentence + " is/are currently assigned to this job."
     else
       message = "No boats currently assigned!"
