@@ -6,7 +6,7 @@ class RoutesController < ApplicationController
 
     if @route.save
       flash[:notice] = "Successfully created route!"
-      redirect_to :back
+      render "create.js.erb"
     else
       flash[:alert] = "Error creating new route."
       redirect_to :back
