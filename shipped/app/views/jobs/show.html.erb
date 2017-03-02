@@ -7,7 +7,7 @@
 <h3>Destination: <%= @job.destination %></h3>
 <h3>Cost: <%= number_to_currency(@job.cost) %></h3>
 <h3>Needed containers: <%= @job.needed_containers %></h3>
-<p><%= @job.description %></p>
+<p class="append-to"><%= @job.description %></p>
 
 <% if current_user == User.find(@job.user_id) %>
   <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
@@ -24,7 +24,7 @@
         </div>
         <div class="modal-body">
           <% if @boats.count > 0 %>
-            <%= simple_form_for(@route, remote: true) do |f| %>
+            <%= simple_form_for @route, remote: true, method: :post do |f| %>
 
               <div class="form-inputs">
                 <%= f.input :boat_id, required: true, collection: @boats %>
