@@ -21,13 +21,13 @@ class User < ApplicationRecord
     available_boats = (self.boats.all - Boat.find(assigned_boats.map(&:boat_id)) - Boat.find(not_enough_space.map(&:id)) - Boat.find(not_located.map(&:id))).map{ |e| [e.name, e.id] }
   end
 
-  def assigned_boat_count(job_id, user_id)
+  def assigned_boats(job_id, user_id)
     boats = Boat.find(Route.where(job_id: job_id).map(&:boat_id))
     boats = boats.map{ |e| e.name }
-    boats.count
+    # boats.count
   end
 
-  def boats_assigned(job_id, user_id)
+  def boats_assigned_page(job_id, user_id)
     boats = Boat.find(Route.where(job_id: job_id).map(&:boat_id))
     boats = boats.map{ |e| e.name }
     if boats.count >= 1

@@ -13,17 +13,18 @@
   <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
   <%= button_to "Delete this job", job_path(@job), method: :delete %>
 <% elsif current_user %>
-  <% if current_user.assigned_boat_count > 0%>
-    <div><%= current_user.boats_assigned(@job.id, current_user.id) %></div>
+  <% if current_user.assigned_boats(@job.id, current_user.id).count > 0 %>
+    <h3>Assigned Boats</h3>
+    <div><%= current_user.boats_assigned_page(@job.id, current_user.id) %></div>
     <%= simple_form_for @route, remote: true, method: :delete do |f| %>
 
       <div class="form-inputs">
-        <%= f.input :boat_id, required: true, collection: @boats %>
+        <%= f.input :boat_id, required: true, collection: current_user.assigned_boats(@job.id, current_user.id) %>
         <%= f.hidden_field :job_id, value: @job.id %>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, data: { disable_with: "Submitting..." } %>
+        <%= f.button :submit, "Remove boat from job", data: { disable_with: "Submitting..." } %>
       </div>
     <% end %>
   <% end %>
