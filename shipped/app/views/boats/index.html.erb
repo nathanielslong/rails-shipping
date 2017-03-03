@@ -1,15 +1,18 @@
 
 <div class="container">
-  <h1>All boats</h1>
-  <ul class="boat-list">
-    <% @boats.each do |boat| %>
-      <li class="boat-list">
-        <h2>Boat: <%= boat.name %></h2>
-        <h3>Current location: <%= boat.location %></h3>
-        <p>Total containers: <%= boat.total_containers %></p>
-        <p>Available containers: <%= boat.available_containers %></p>
-        <p><%= image_tag boat.image, class: "image_prev" %></p>
-      </li>
-    <% end %>
-  </ul>
+  <div class="nice-background">
+    <h1>All boats</h1>
+    <ul class="boat-list">
+      <% @boats.each do |boat| %>
+        <li class="boat-list">
+          <h2>Boat: <%= boat.name %></h2>
+          <h3>Current location: <%= boat.location %></h3>
+          <p>Total containers: <%= boat.total_containers %></p>
+          <p>Available containers: <%= boat.available_containers %></p>
+          <p><%= image_tag boat.image, class: "image_prev" %></p>
+          <p><%= link_to "Read More", boat_path(boat) %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

@@ -4,7 +4,7 @@
     <h2>Current location: <%= @boat.location %></h2>
     <p>Total containers: <%= @boat.total_containers %></p>
     <p>Available containers: <%= @boat.available_containers %></p>
-    <p><%= image_tag @boat.image class: "image-prev" %></p>
+    <li class="boat-list"><p><%= image_tag @boat.image class: "image-prev" %></p></li>
     <% if current_user == User.find(@boat.user_id) %>
       <%= button_to "Edit boat info", edit_boat_path(@boat), method: :get %>
       <%= button_to "Delete this boat", boat_path(@boat), method: :delete %>
