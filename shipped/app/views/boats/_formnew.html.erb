@@ -1,5 +1,3 @@
-<h1>Boats#_formnew</h1>
-
 <%= simple_form_for @boat do |f| %>
 	<%= f.input :name, required:true, wrapper_html:{		} %>
 	<%= f.input :location, required: true, collection: @ports %>

@@ -7,25 +7,22 @@ class BoatsController < ApplicationController
   end
 
   def edit
-<<<<<<< HEAD
-=======
     @ports = Port.all.collect{ |port| [port.location, port.id]  }
   end
 
 
   def update
     if @boat.update_attributes(name: boat_params[:name],
-                                      location: Port.find(boat_params[:location]).location,
-                                      total_containers: boat_params[:total_containers],
-                                      available_containers: boat_params[:available_containers],
-                                      image: boat_params[:image])
+        location: Port.find(boat_params[:location]).location,
+        total_containers: boat_params[:total_containers],
+        available_containers: boat_params[:available_containers],
+        image: boat_params[:image])
       flash[:notice] = "Successfully updated boat profile!"
       redirect_to boat_path(@boat)
     else
       flash[:alert] = "Error creating new boat."
       render :edit
     end
->>>>>>> boatscontroller
 
   end
 
@@ -42,10 +39,10 @@ class BoatsController < ApplicationController
   def create
     @boat = Boat.last
     @boat.update_attributes(name: boat_params[:name],
-                                      location: Port.find(boat_params[:location]).location,
-                                      total_containers: boat_params[:total_containers],
-                                      available_containers: boat_params[:available_containers],
-                                      image: boat_params[:image])
+                            location: Port.find(boat_params[:location]).location,
+                            total_containers: boat_params[:total_containers],
+                            available_containers: boat_params[:available_containers],
+                            image: boat_params[:image])
     if @boat.save
       flash[:notice] = "Successfully created boat!"
       redirect_to boat_path(@boat)
@@ -63,9 +60,7 @@ class BoatsController < ApplicationController
   private
 
   def set_boat
-
     @boat = Boat.find(params[:id])
-    
   end
 
 
