@@ -16,7 +16,7 @@ class BoatsController < ApplicationController
         location: Port.find(boat_params[:location]).location,
         total_containers: boat_params[:total_containers],
         available_containers: boat_params[:available_containers],
-        image: boat_params[:image])
+        image: boat_params[:image]) && boat_params[:total_containers] >= boat_params[:available_containers]
       flash[:notice] = "Successfully updated boat profile!"
       redirect_to boat_path(@boat)
     else
@@ -43,7 +43,7 @@ class BoatsController < ApplicationController
                             total_containers: boat_params[:total_containers],
                             available_containers: boat_params[:available_containers],
                             image: boat_params[:image])
-    if @boat.save
+    if @boat.save && boat_params[:total_containers] >= boat_params[:available_containers]
       flash[:notice] = "Successfully created boat!"
       redirect_to boat_path(@boat)
     else

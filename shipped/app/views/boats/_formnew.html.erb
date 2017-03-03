@@ -1,8 +1,8 @@
 <%= simple_form_for @boat do |f| %>
-	<%= f.input :name, required:true, wrapper_html:{		} %>
-	<%= f.input :location, required: true, collection: @ports %>
-	<%= f.input :total_containers, required:true, wrapper_html:{		} %>
-	<%= f.input :available_containers, required:true, wrapper_html:{		} %>
-	<%= f.input :image, as: :file, wrapper_html:{		} %>
-	<%= f.button :submit %>
+  <%= f.input :name, required:true, wrapper_html:{		} %>
+  <%= f.input :location, required: true, collection: @ports %>
+  <%= f.input :total_containers, required:true, wrapper_html:{		} %>
+  <%= f.input :available_containers, required:true, wrapper_html:{		} %>
+  <%= f.input :image, as: :file, wrapper_html:{		} %>
+  <%= f.button :submit %>
 <% end %>
