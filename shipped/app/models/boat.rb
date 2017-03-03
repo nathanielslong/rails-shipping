@@ -19,4 +19,14 @@ class Boat < ApplicationRecord
     {:bucket => "railsblogbucket", :access_key_id => ENV["AWS_ACCESS_KEY_ID"], :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]}
   end
 
+  def assigned_jobs
+    routes = Route.where(boat_id: self.id)
+    jobs = Job.find(routes.map(&:job_id)).map(&:name)
+    if jobs.count >= 1
+      message = jobs.each{ |job| job }.to_sentence + "."
+    else
+      message = "no current jobs."
+    end
+  end
+
 end
