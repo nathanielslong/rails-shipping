@@ -8,7 +8,7 @@
         <h3>Current location: <%= boat.location %></h3>
         <p>Total containers: <%= boat.total_containers %></p>
         <p>Available containers: <%= boat.available_containers %></p>
-        <p><%= image_tag boat.image %></p>
+        <p><%= image_tag boat.image, class: "image_prev" %></p>
       </li>
     <% end %>
   </ul>
