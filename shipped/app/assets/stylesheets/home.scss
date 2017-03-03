@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   padding-top: 50px;
   font-family: 'Montserrat' !important;
@@ -9,6 +14,8 @@ body {
 
 .background {
   background-image: url(/assets/background.jpg);
+  height: 100%;
+  padding-bottom: 50px;
 }
 
 footer {
