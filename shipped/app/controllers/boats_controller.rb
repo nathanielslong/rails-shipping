@@ -12,8 +12,12 @@ class BoatsController < ApplicationController
 
 
   def update
-    if @boat.update_attributes(boat_params)
-      flash[:notice] = "Successfully created new boat!"
+    if @boat.update_attributes(name: boat_params[:name],
+                                      location: Port.find(boat_params[:location]).location,
+                                      total_containers: boat_params[:total_containers],
+                                      available_containers: boat_params[:available_containers],
+                                      image: boat_params[:image])
+      flash[:notice] = "Successfully updated boat profile!"
       redirect_to boat_path(@boat)
     else
       flash[:alert] = "Error creating new boat."
@@ -34,8 +38,11 @@ class BoatsController < ApplicationController
 
   def create
     @boat = Boat.last
-    @boat.update_attributes(boat_params)
-
+    @boat.update_attributes(name: boat_params[:name],
+                                      location: Port.find(boat_params[:location]).location,
+                                      total_containers: boat_params[:total_containers],
+                                      available_containers: boat_params[:available_containers],
+                                      image: boat_params[:image])
     if @boat.save
       flash[:notice] = "Successfully created boat!"
       redirect_to boat_path(@boat)
@@ -54,6 +61,7 @@ class BoatsController < ApplicationController
 
   def set_boat
       @boat = Boat.find(params[:id])
+
   end
 
 
