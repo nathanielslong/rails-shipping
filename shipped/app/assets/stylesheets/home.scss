@@ -2,13 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   padding-top: 50px;
   font-family: 'Montserrat' !important;
 }
 
 .background {
-  background-image: url(/assets/background.jpg);
+  background: url(/assets/background.jpg) no-repeat center center fixed;
+  padding-bottom: 50px;
+  min-height: 100%;
 }
 
 footer {

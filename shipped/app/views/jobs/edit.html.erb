@@ -1,7 +1,9 @@
 <% if current_user == @user %>
   <h1>Edit your job</h1>
 
-  <%= render "jobs/form"%>
+  <div class="nice-background">
+    <%= render "jobs/form"%>
+  </div>
 <% else %>
   <p>You can't edit another person's jobs, shame on you!</p>
 <% end %>
