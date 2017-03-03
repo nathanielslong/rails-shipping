@@ -3,10 +3,10 @@ class RoutesController < ApplicationController
   def create
     @route = Route.new()
     @route.update_attributes(route_params)
+    #change available containers
 
     if @route.save
-      flash[:notice] = "Successfully created route!"
-      render "create.js.erb"
+      render "jobs/create.js.erb"
     else
       flash[:alert] = "Error creating new route."
       redirect_to :back

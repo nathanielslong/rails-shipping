@@ -18,7 +18,23 @@ class User < ApplicationRecord
     not_located = self.boats.where("location != '#{origin}'")
 
     #need to test
-    available_boats = (self.boats.all - Boat.find(assigned_boats.map(&:id)) - Boat.find(not_enough_space.map(&:id)) - Boat.find(not_located.map(&:id))).map{ |e| [e.name, e.id] }
+    available_boats = (self.boats.all - Boat.find(assigned_boats.map(&:boat_id)) - Boat.find(not_enough_space.map(&:id)) - Boat.find(not_located.map(&:id))).map{ |e| [e.name, e.id] }
+  end
+
+  def assigned_boats(job_id, user_id)
+    boats = Boat.find(Route.where(job_id: job_id).map(&:boat_id))
+    boats = boats.map{ |e| e.name }
+    # boats.count
+  end
+
+  def boats_assigned_page(job_id, user_id)
+    boats = Boat.find(Route.where(job_id: job_id).map(&:boat_id))
+    boats = boats.map{ |e| e.name }
+    if boats.count >= 1
+      message = boats.each{ |boat| boat}.to_sentence + " is/are currently assigned to this job."
+    else
+      message = "No boats currently assigned!"
+    end
   end
 
   def full_name

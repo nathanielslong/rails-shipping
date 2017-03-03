@@ -1,48 +1,69 @@
-<h1>This job:</h1>
+<div class="container-fluid">
+  <div class="col-xs-6">
+    <h1>This job:</h1>
 
-<h2>Job name: <%= @job.name %></h2>
-<h3>Company requesting: <%= @user.company %></h3>
-<h5>Last updated: <%= time_ago_in_words(@job.updated_at) %> ago.</h5>
-<h3>Origin: <%= @job.origin %></h3>
-<h3>Destination: <%= @job.destination %></h3>
-<h3>Cost: <%= number_to_currency(@job.cost) %></h3>
-<h3>Needed containers: <%= @job.needed_containers %></h3>
-<p><%= @job.description %></p>
+    <h2>Job name: <%= @job.name %></h2>
+    <h3>Company requesting: <%= @user.company %></h3>
+    <h5>Last updated: <%= time_ago_in_words(@job.updated_at) %> ago.</h5>
+    <h3>Origin: <%= @job.origin %></h3>
+    <h3>Destination: <%= @job.destination %></h3>
+    <h3>Cost: <%= number_to_currency(@job.cost) %></h3>
+    <h3>Needed containers: <%= @job.needed_containers %></h3>
+    <p class="append-to"><%= @job.description %></p>
 
-<% if current_user == User.find(@job.user_id) %>
-  <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
-  <%= button_to "Delete this job", job_path(@job), method: :delete %>
-<% elsif current_user %>
-  <button class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal">Assign a boat to this job</button>
+    <% if current_user == User.find(@job.user_id) %>
+      <%= button_to "Edit this job", edit_job_path(@job), method: :get %>
+      <%= button_to "Delete this job", job_path(@job), method: :delete %>
+  </div>
+  <div class="col-xs-6">
+  <% elsif current_user %>
+    <% if current_user.assigned_boats(@job.id, current_user.id).count > 0 %>
+      <h3>Assigned Boats</h3>
+      <div><%= current_user.boats_assigned_page(@job.id, current_user.id) %></div>
+      <%= simple_form_for @route, method: :delete do |f| %>
 
-  <div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-          <h4 class="modal-title" id="myModalLabel">Assign a boat</h4>
+        <div class="form-inputs">
+          <%= f.input :boat_id, required: true, collection: current_user.assigned_boats(@job.id, current_user.id) %>
+          <%= f.hidden_field :job_id, value: @job.id %>
         </div>
-        <div class="modal-body">
-          <% if @boats.count > 0 %>
-            <%= simple_form_for(@route, remote: true) do |f| %>
 
-              <div class="form-inputs">
-                <%= f.input :boat_id, required: true, collection: @boats %>
-                <%= f.hidden_field :job_id, value: @job.id %>
-              </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Remove boat from job", data: { disable_with: "Submitting..." } %>
+        </div>
+      <% end %>
+    <% end %>
+    <button class="span4 proj-div" data-toggle="modal" data-target="#GSCCModal">Assign a boat to this job</button>
+  </div>
+</div>
 
-              <div class="form-actions">
-                <%= f.button :submit, data: { disable_with: "Submitting..." } %>
-              </div>
-            <% end %>
-          <% else %>
-            <div class="modal-body">
-              You have no boats that fit this job. Please try another.
+<div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+        <h4 class="modal-title" id="myModalLabel">Assign a boat</h4>
+      </div>
+      <div class="modal-body">
+        <% if @boats.count > 0 %>
+          <%= simple_form_for @route, remote: true, method: :post do |f| %>
+
+            <div class="form-inputs">
+              <%= f.input :boat_id, required: true, collection: @boats %>
+              <%= f.hidden_field :job_id, value: @job.id %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, data: { disable_with: "Submitting..." } %>
             </div>
           <% end %>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+        <% else %>
+          <div class="modal-body">
+            You have no boats that fit this job. Please try another.
+          </div>
+        <% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 <% end %>
