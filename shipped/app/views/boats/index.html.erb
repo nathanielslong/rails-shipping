@@ -2,9 +2,6 @@
 <p>Find me in app/views/boats/index.html.erb</p>
 <ul>
 	<% @boats.each do |boat| %>
-		<% if boat.id > 10 %>
-	 		<% break %>
-	 	<% end %>
 	 	<li>
 			<p>Boat: <%= boat.name %></p>
 			<p>Current location: <%= boat.location %></p>
