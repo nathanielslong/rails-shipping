@@ -1,12 +1,13 @@
-<h1> @ Ship to Shore </h1>
+<div id="shipicon">
+	<%= image_tag "ship-icon.png" %>
+</div>
+<h1 id="homepagetitle">ship to shore </h1>
 
-<ul>	
+	
 	<% @top5.each do |t| %>
-		<li>
-			<%= t.name %>
-			<%= t.cost %>
-		</li>
+		<div class="entry">
+			<h3><%= t.name %></h3>
+			<p><%= t.description %></p>
+			<h4>$ <%= t.cost %></h4>
+		</div>
 	<% end %>
-</ul>
-
-#list top 3 boats with most routes
