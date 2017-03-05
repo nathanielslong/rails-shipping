@@ -1,13 +1,28 @@
 <div id="shipicon">
-	<%= image_tag "ship-icon.png" %>
+  <%= image_tag "ship-icon.png" %>
 </div>
 <h1 id="homepagetitle">ship to shore </h1>
 
-	
-	<% @top5.each do |t| %>
-		<div class="entry">
-			<h3><%= t.name %></h3>
-			<p><%= t.description %></p>
-			<h4>$ <%= t.cost %></h4>
-		</div>
-	<% end %>
+<div class="container">
+  <div class="col-xs-4">
+    <h2>Top Jobs</h2>
+    <% @top5.each do |t| %>
+      <div class="entry">
+        <h3><%= t.name %></h3>
+        <p><%= t.description %></p>
+        <h4>$ <%= t.cost %></h4>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <h2>Top Boats</h2>
+    <% @top3.each do |t| %>
+      <div class="entry">
+        <h3><%= t.name %></h3>
+        <li class="boat-list"><p><%= image_tag t.image class: "image-prev" %></p></li>
+        <h4><%= t.available_containers %> containers available</h4>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

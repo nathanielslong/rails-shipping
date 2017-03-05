@@ -29,7 +29,7 @@ class Boat < ApplicationRecord
     end
   end
 
-  def most_routes
+  def self.most_routes
     boats = self.all
     boat_ids = []
     route_count = []
