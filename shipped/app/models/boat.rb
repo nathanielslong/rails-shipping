@@ -29,4 +29,25 @@ class Boat < ApplicationRecord
     end
   end
 
+  def most_routes
+    boats = self.all
+    boat_ids = []
+    route_count = []
+
+    boats.each do |boat|
+      boat_ids.push(boat.id)
+      route_count.push(boat.routes.to_a.count)
+    end
+
+    boats_routes = Hash[boat_ids.zip(route_count)]
+    sorted = boats_routes.sort_by { |boat_ids, route_count| route_count }
+    chosen_boats = []
+
+    (0..2).each do |i|
+      chosen_boats.push(Boat.find(sorted[i][0]))
+    end
+
+    chosen_boats
+  end
+
 end
