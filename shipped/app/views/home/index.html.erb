@@ -10,7 +10,8 @@
       <div class="entry">
         <h3><%= t.name %></h3>
         <p><%= t.description %></p>
-        <h4>$ <%= t.cost %></h4>
+        <p>$<%= t.cost %></p>
+        <p><%= link_to "More details", job_path(t) %></p>
       </div>
     <% end %>
   </div>
@@ -20,7 +21,8 @@
       <div class="entry">
         <h3><%= t.name %></h3>
         <li class="boat-list"><p><%= image_tag t.image class: "image-prev" %></p></li>
-        <h4><%= t.available_containers %> containers available</h4>
+        <p><%= t.available_containers %> containers available</p>
+        <p><%= link_to "More details", boat_path(t) %></p>
       </div>
       <br>
     <% end %>
