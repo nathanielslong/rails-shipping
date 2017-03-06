@@ -1,6 +1,6 @@
 class BoatsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_boat, only: [:update, :show, :edit]
+  before_action :set_boat, only: [:update, :show, :edit, :destroy]
 
   def index
     @boats = Boat.all
@@ -9,7 +9,6 @@ class BoatsController < ApplicationController
   def edit
     @ports = Port.all.collect{ |port| [port.location, port.id]  }
   end
-
 
   def update
     if @boat.update_attributes(name: boat_params[:name],
@@ -23,11 +22,9 @@ class BoatsController < ApplicationController
       flash[:alert] = "Error creating new boat."
       render :edit
     end
-
   end
 
   def show
-
   end
 
   def new
@@ -37,7 +34,7 @@ class BoatsController < ApplicationController
   end
 
   def create
-    @boat = Boat.last
+    @boat = current_user.boats.new
     @boat.update_attributes(name: boat_params[:name],
                             location: Port.find(boat_params[:location]).location,
                             total_containers: boat_params[:total_containers],
@@ -50,9 +47,17 @@ class BoatsController < ApplicationController
       flash[:alert] = "Error creating new boat."
       render :new
     end
-
   end
 
+  def destroy
+    if @boat.destroy
+      flash[:notice] = "Successfully deleted boat!"
+      redirect_to boats_path
+    else
+      flash[:alert] = "Error deleting boat."
+      redirect_to boats_path
+    end
+  end
 
   def _form
   end
