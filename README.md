@@ -6,4 +6,9 @@ List your job, the amount of containers to be moved, and the price you're willin
 
 If you have a boat, list your boat and accept jobs at your origin port.
 
-Site online at shiptoshore.herokuapp.com. Made with Ruby on Rails, Bootstrap, Jquery, Sass, and other assorted smaller quantities.
+Site online at shiptoshore.herokuapp.com. Testing user info:
+
+Email: test@user.com
+Password: testuser
+
+Made with Ruby on Rails, Bootstrap, Jquery, Sass, and other assorted smaller quantities.
